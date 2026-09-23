@@ -1,124 +1,475 @@
-from pathlib import Path
-import zipfile
 
-work = Path("/mnt/data/dm_fist_final")
-work.mkdir(exist_ok=True)
-
-# Copy the generated poster image into the bundle.
-src_img = Path("/mnt/data/ChatGPT Image Sep 23, 2026, 09_26_21 PM.png")
-img_name = "dm-fist-offer.png"
-dst_img = work / img_name
-dst_img.write_bytes(src_img.read_bytes())
-
-html = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#05070d">
-  <meta name="description" content="DM FIST deposit bonus offer">
-  <title>DM FIST - Deposit Bonus</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#06140e">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<title>DMFIST Deposit Bonus | Register Now</title>
+<meta name="description" content="DMFIST deposit bonus offer. Register now and check the latest promotional terms.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:Inter,Arial,sans-serif;
+    color:#fff;
+    background:
+        radial-gradient(circle at 50% 0%,rgba(0,255,132,.13),transparent 32%),
+        radial-gradient(circle at 0% 100%,rgba(255,20,20,.10),transparent 35%),
+        #06140e;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:22px;
+    overflow-x:hidden;
+}
+
+.page{
+    width:100%;
+    max-width:520px;
+    position:relative;
+}
+
+.glow{
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:.35;
+    pointer-events:none;
+}
+
+.glow.one{
+    background:#00ff88;
+    top:-70px;
+    left:-70px;
+}
+
+.glow.two{
+    background:#ff1717;
+    right:-80px;
+    bottom:-80px;
+}
+
+.card{
+    position:relative;
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:28px;
+
+    padding:30px 22px 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(14,39,27,.97),
+            rgba(4,16,11,.98)
+        );
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+/* TOP BADGE */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    border:1px solid rgba(255,45,45,.35);
+
+    background:rgba(255,25,25,.09);
+
+    color:#ff4545;
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#ff2727;
+
+    box-shadow:0 0 12px #ff2727;
+
+    animation:pulse 1.3s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        opacity:.35;
+        transform:scale(.7);
+    }
+}
+
+/* TITLE */
+
+h1{
+    margin-top:20px;
+
+    font-size:clamp(34px,10vw,54px);
+
+    line-height:.98;
+
+    font-weight:900;
+
+    letter-spacing:-2px;
+
+    color:#ff3030;
+
+    text-shadow:
+        0 0 25px rgba(255,30,30,.22);
+}
+
+/* SUBTITLE */
+
+.sub{
+    margin-top:14px;
+
+    color:#e9fff2;
+
+    font-size:16px;
+
+    line-height:1.55;
+
+    font-weight:600;
+}
+
+.highlight{
+    color:#fff;
+    font-weight:900;
+}
+
+/* OFFER BOX */
+
+.offer{
+    margin:24px 0 18px;
+
+    padding:20px 18px;
+
+    border-radius:20px;
+
+    background:rgba(0,255,132,.055);
+
+    border:1px solid rgba(0,255,132,.18);
+
+    text-align:center;
+}
+
+.offer small{
+    display:block;
+
+    color:#9fc0ad;
+
+    font-size:11px;
+
+    letter-spacing:1.8px;
+
+    text-transform:uppercase;
+
+    margin-bottom:8px;
+}
+
+.amount{
+    font-size:36px;
+
+    font-weight:900;
+
+    color:#fff;
+}
+
+.amount span{
+    color:#ff3030;
+}
+
+/* NOTICE */
+
+.notice{
+    margin:18px 0;
+
+    padding:13px 15px;
+
+    border-left:3px solid #ff3030;
+
+    background:rgba(255,30,30,.07);
+
+    color:#ffd7d7;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+/* BUTTON */
+
+.cta{
+    display:block;
+
+    width:100%;
+
+    padding:17px 20px;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    color:#07110c;
+
+    background:#fff;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    letter-spacing:.4px;
+
+    box-shadow:
+        0 12px 30px rgba(255,255,255,.12);
+
+    transition:.2s ease;
+}
+
+.cta:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 16px 36px rgba(255,255,255,.20);
+}
+
+.cta:active{
+    transform:scale(.98);
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:9px;
+
+    margin-top:16px;
+}
+
+.feature{
+    padding:12px 6px;
+
+    text-align:center;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.035);
+
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.feature b{
+    display:block;
+
+    font-size:12px;
+
+    color:#fff;
+}
+
+.feature span{
+    display:block;
+
+    margin-top:4px;
+
+    font-size:9px;
+
+    color:#9eb6a8;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:20px;
+
+    text-align:center;
+
+    color:#6f8c7c;
+
+    font-size:10px;
+
+    line-height:1.5;
+}
+
+/* MOBILE */
+
+@media(max-width:390px){
+
+    body{
+        padding:12px;
     }
 
-    html, body {
-      width: 100%;
-      min-height: 100%;
+    .card{
+        padding:24px 16px 20px;
+
+        border-radius:22px;
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 14px;
-      background:
-        radial-gradient(circle at 50% 20%, rgba(255,193,7,.14), transparent 35%),
-        linear-gradient(135deg, #02040a, #07111d 50%, #020308);
-      font-family: Arial, Helvetica, sans-serif;
+    h1{
+        font-size:38px;
     }
 
-    .wrap {
-      width: min(100%, 520px);
-      text-align: center;
+    .features{
+        gap:6px;
     }
 
-    .offer-image {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 18px;
-      box-shadow:
-        0 0 35px rgba(255,193,7,.28),
-        0 12px 40px rgba(0,0,0,.65);
+    .amount{
+        font-size:30px;
     }
-
-    .btn {
-      display: block;
-      width: 100%;
-      margin-top: 14px;
-      padding: 16px 20px;
-      border-radius: 14px;
-      text-decoration: none;
-      color: #111;
-      background: linear-gradient(180deg, #ffe94a, #ffb800);
-      border: 2px solid #fff0a0;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: .5px;
-      box-shadow: 0 0 20px rgba(255,193,7,.45);
-      transition: .2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.08);
-    }
-
-    .note {
-      margin-top: 9px;
-      color: #aaa;
-      font-size: 12px;
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
-  <main class="wrap">
-    <img
-      class="offer-image"
-      src="dm-fist-offer.png"
-      alt="DM FIST 100 RS Deposit 500 RS Deposit Bonus"
-    >
 
-    <a
-      class="btn"
-      href="https://www.dmfirst0.com/#/register?invitationCode=53214100911"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      REGISTER NOW →
-    </a>
+<div class="page">
 
-    <div class="note">DM FIST • Deposit Bonus Offer</div>
-  </main>
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <main class="card">
+
+        <!-- OFFER BADGE -->
+
+        <div class="badge">
+            <span class="dot"></span>
+            Limited Time Offer
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+            DMFIST<br>
+            DEPOSIT BONUS
+        </h1>
+
+
+        <!-- SUBTITLE -->
+
+        <p class="sub">
+            Deposit
+            <span class="highlight">₹100</span>
+            and check the available promotional bonus of
+            <span class="highlight">₹350</span>.
+        </p>
+
+
+        <!-- OFFER -->
+
+        <section class="offer">
+
+            <small>
+                Featured Offer
+            </small>
+
+            <div class="amount">
+                ₹100
+                <span>→</span>
+                ₹350 BONUS
+            </div>
+
+        </section>
+
+
+        <!-- LIMITED TIME MESSAGE -->
+
+        <div class="notice">
+
+            <strong>LIMITED TIME OFFER</strong><br>
+
+            Fast claim now. Offer availability and eligibility
+            may vary. Please review the current terms shown
+            on the registration page before participating.
+
+        </div>
+
+
+        <!-- REGISTRATION BUTTON -->
+        <!-- Opens in SAME WINDOW -->
+
+        <a
+            class="cta"
+            href="https://www.dmfirst0.com/#/register?invitationCode=53214100911"
+        >
+            REGISTRATION NOW
+        </a>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <div class="feature">
+                <b>FAST</b>
+                <span>Registration</span>
+            </div>
+
+            <div class="feature">
+                <b>LIMITED</b>
+                <span>Time Offer</span>
+            </div>
+
+            <div class="feature">
+                <b>CLAIM</b>
+                <span>Check Terms</span>
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            © 2026 DMFIST • Promotional information only
+
+        </div>
+
+    </main>
+
+</div>
+
 </body>
 </html>
-"""
 
-html_path = work / "index.html"
-html_path.write_text(html, encoding="utf-8")
 
-zip_path = Path("/mnt/data/DM_FIST_FINAL_WEBSITE.zip")
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-    z.write(html_path, "index.html")
-    z.write(dst_img, img_name)
-
-print("FINAL CODE:")
-print(html)
-print("\nBundle created:", zip_path)
