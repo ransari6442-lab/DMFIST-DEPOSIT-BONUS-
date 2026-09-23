@@ -1,0 +1,124 @@
+from pathlib import Path
+import zipfile
+
+work = Path("/mnt/data/dm_fist_final")
+work.mkdir(exist_ok=True)
+
+# Copy the generated poster image into the bundle.
+src_img = Path("/mnt/data/ChatGPT Image Sep 23, 2026, 09_26_21 PM.png")
+img_name = "dm-fist-offer.png"
+dst_img = work / img_name
+dst_img.write_bytes(src_img.read_bytes())
+
+html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05070d">
+  <meta name="description" content="DM FIST deposit bonus offer">
+  <title>DM FIST - Deposit Bonus</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,193,7,.14), transparent 35%),
+        linear-gradient(135deg, #02040a, #07111d 50%, #020308);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .wrap {
+      width: min(100%, 520px);
+      text-align: center;
+    }
+
+    .offer-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      box-shadow:
+        0 0 35px rgba(255,193,7,.28),
+        0 12px 40px rgba(0,0,0,.65);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 14px;
+      padding: 16px 20px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #111;
+      background: linear-gradient(180deg, #ffe94a, #ffb800);
+      border: 2px solid #fff0a0;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: .5px;
+      box-shadow: 0 0 20px rgba(255,193,7,.45);
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .note {
+      margin-top: 9px;
+      color: #aaa;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <img
+      class="offer-image"
+      src="dm-fist-offer.png"
+      alt="DM FIST 100 RS Deposit 500 RS Deposit Bonus"
+    >
+
+    <a
+      class="btn"
+      href="https://www.dmfirst0.com/#/register?invitationCode=53214100911"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      REGISTER NOW →
+    </a>
+
+    <div class="note">DM FIST • Deposit Bonus Offer</div>
+  </main>
+</body>
+</html>
+"""
+
+html_path = work / "index.html"
+html_path.write_text(html, encoding="utf-8")
+
+zip_path = Path("/mnt/data/DM_FIST_FINAL_WEBSITE.zip")
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+    z.write(html_path, "index.html")
+    z.write(dst_img, img_name)
+
+print("FINAL CODE:")
+print(html)
+print("\nBundle created:", zip_path)
