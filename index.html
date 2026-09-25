@@ -1,7 +1,8 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#03100a">
@@ -12,6 +13,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1412397980219454');
+fbq('track', 'PageView');
+</script>
+
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1412397980219454&ev=PageView&noscript=1"
+/>
+</noscript>
+<!-- End Meta Pixel Code -->
 
 <style>
 
@@ -57,15 +80,11 @@ body{
     overflow-x:hidden;
 }
 
-/* MAIN */
-
 .page{
     width:100%;
     max-width:520px;
     position:relative;
 }
-
-/* BACKGROUND GLOWS */
 
 .glow{
     position:absolute;
@@ -89,8 +108,6 @@ body{
     background:#ff1744;
 }
 
-/* CARD */
-
 .card{
     position:relative;
     overflow:hidden;
@@ -113,8 +130,6 @@ body{
         inset 0 1px 0 rgba(255,255,255,.07);
 }
 
-/* TOP LINE */
-
 .card::before{
     content:"";
     position:absolute;
@@ -134,8 +149,6 @@ body{
     box-shadow:
         0 0 18px rgba(255,40,50,.7);
 }
-
-/* BADGE */
 
 .badge{
     display:inline-flex;
@@ -191,8 +204,6 @@ body{
 
 }
 
-/* TITLE */
-
 h1{
     margin-top:22px;
 
@@ -225,8 +236,6 @@ h1{
         drop-shadow(0 0 12px rgba(255,20,30,.12));
 }
 
-/* SUBTITLE */
-
 .sub{
     margin-top:17px;
 
@@ -251,8 +260,6 @@ h1{
 .rupee{
     color:#ffd76a;
 }
-
-/* OFFER BOX */
 
 .offer{
     position:relative;
@@ -342,8 +349,6 @@ h1{
         0 0 16px rgba(255,200,50,.18);
 }
 
-/* NOTICE */
-
 .notice{
     margin:18px 0;
 
@@ -372,8 +377,6 @@ h1{
 
     letter-spacing:.8px;
 }
-
-/* BUTTON */
 
 .cta{
     position:relative;
@@ -415,6 +418,8 @@ h1{
     transition:
         transform .2s ease,
         box-shadow .2s ease;
+
+    cursor:pointer;
 }
 
 .cta::before{
@@ -441,8 +446,6 @@ h1{
 .cta:active{
     transform:scale(.98);
 }
-
-/* FEATURES */
 
 .features{
     display:grid;
@@ -491,8 +494,6 @@ h1{
     font-weight:500;
 }
 
-/* FOOTER */
-
 .footer{
     margin-top:20px;
 
@@ -504,8 +505,6 @@ h1{
 
     line-height:1.6;
 }
-
-/* MOBILE */
 
 @media(max-width:390px){
 
@@ -557,7 +556,6 @@ h1{
             LIMITED TIME OFFER
         </div>
 
-
         <!-- TITLE -->
 
         <h1>
@@ -565,12 +563,12 @@ h1{
             DEPOSIT BONUS
         </h1>
 
-
         <!-- SUBTITLE -->
 
         <p class="sub">
 
             Deposit
+
             <span class="highlight">
                 <span class="rupee">₹</span>100
             </span>
@@ -582,7 +580,6 @@ h1{
             </span>.
 
         </p>
-
 
         <!-- OFFER -->
 
@@ -608,7 +605,6 @@ h1{
 
         </section>
 
-
         <!-- NOTICE -->
 
         <div class="notice">
@@ -621,17 +617,15 @@ h1{
 
         </div>
 
-
         <!-- REGISTRATION BUTTON -->
-        <!-- SAME WINDOW -->
 
         <a
             class="cta"
             href="https://www.dmfirst0.com/#/register?invitationCode=53214100911"
+            onclick="fbq('track', 'Lead');"
         >
             REGISTRATION NOW
         </a>
-
 
         <!-- FEATURES -->
 
@@ -654,7 +648,6 @@ h1{
 
         </div>
 
-
         <!-- FOOTER -->
 
         <div class="footer">
@@ -669,6 +662,6 @@ h1{
 
 </body>
 </html>
-
+```
 
 
